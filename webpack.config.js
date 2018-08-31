@@ -12,6 +12,10 @@ module.exports = {
         exclude: /node_modules/,
         use: ['babel-loader'],
       },
+      {
+        test: /\.css/,
+        loaders: ['style', 'css'],
+      },
     ],
   },
   // file extensions for webpack to look at
