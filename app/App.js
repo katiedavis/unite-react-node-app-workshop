@@ -24,7 +24,6 @@ export default class App extends React.Component {
     if (!this.state.workaround) {
       return <div />;
     }
-    console.log(getSerialized('apiKey').data);
     return (
       <ApolloProvider client={client}>
         <AppProvider
