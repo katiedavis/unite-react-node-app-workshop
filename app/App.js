@@ -4,6 +4,7 @@ import {ApolloProvider} from 'react-apollo';
 import {AppProvider} from '@shopify/polaris';
 import '@shopify/polaris/styles.css';
 import {getSerialized} from '@shopify/react-serialize';
+//https://github.com/Shopify/quilt/tree/master/packages/react-serialize
 import {MainPage} from './MainPage';
 
 const client = new ApolloClient({
