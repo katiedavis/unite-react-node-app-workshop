@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+import {AppProvider} from '@shopify/polaris';
 import App from '../app/App';
 
 //why use hydrate instead of render? ReactDOM.hydrate() is same as render(), but is used to hydrate(attach event listeners)
@@ -9,4 +9,13 @@ import App from '../app/App';
 //Using ReactDOM.render() to hydrate a server-rendered container is deprecated because of slowness
 //and will be removed in React 17. Use hydrate() instead.
 //we need our server container for the koa and junk so we do this :)
-ReactDOM.hydrate(<App />, document.getElementById('app'));
+
+ReactDOM.hydrate(
+  <AppProvider
+    shopOrigin="https://katieteststore.myshopify.com"
+    apiKey="920672e2a0ee1eeb9a3c4c1422cf0c6a"
+  >
+    <App />
+  </AppProvider>,
+  document.getElementById('app'),
+);
