@@ -10,12 +10,4 @@ import App from '../app/App';
 //and will be removed in React 17. Use hydrate() instead.
 //we need our server container for the koa and junk so we do this :)
 
-ReactDOM.hydrate(
-  <AppProvider
-    shopOrigin="https://katieteststore.myshopify.com"
-    apiKey="920672e2a0ee1eeb9a3c4c1422cf0c6a"
-  >
-    <App />
-  </AppProvider>,
-  document.getElementById('app'),
-);
+ReactDOM.hydrate(<App />, document.getElementById('app'));
