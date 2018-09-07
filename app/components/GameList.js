@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {ResourceList} from '@shopify/polaris';
 import GameItem from './GameItem';
 
 export default function GameList({games = [], onAddGame}) {

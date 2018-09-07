@@ -1,16 +1,17 @@
 import React from 'react';
+import {Button} from '@shopify/polaris';
 
 export default function GameItem({onAddGame, game: {name}}) {
   return (
     <li>
       <p>{name}</p>
-      <button
+      <Button
         onClick={() => {
           onAddGame(name);
         }}
       >
         Create product
-      </button>
+      </Button>
     </li>
   );
 }

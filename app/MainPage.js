@@ -1,7 +1,7 @@
 import React from 'react';
 import {Mutation} from 'react-apollo';
 import {gql} from 'apollo-boost';
-import {Page} from '@shopify/polaris';
+import {Page, Layout, Heading} from '@shopify/polaris';
 
 import GameList from './components/GameList';
 import Fetch from 'react-fetch-component';
@@ -30,10 +30,11 @@ export const MainPage = () => {
           disabled: true,
         }}
       >
-        <h1>Board game loader</h1>
+        <Heading>Board game loader</Heading>
 
         <Fetch url="https://boardgameslist.herokuapp.com" as="json">
           {(fetchResults) => {
+            console.log(fetchResults.data);
             if (fetchResults.loading) {
               return <p>Loading</p>;
             }
@@ -58,24 +59,26 @@ export const MainPage = () => {
                   );
 
                   return (
-                    <React.Fragment>
-                      <GameList
-                        games={fetchResults.data}
-                        onAddGame={(title) => {
-                          const productInput = {
-                            title: title,
-                            productType: 'board game',
-                          };
-                          console.log(title);
-                          createProduct({
-                            variables: {product: productInput},
-                          });
-                        }}
-                      />
-                      {loading}
-                      {error}
-                      {success}
-                    </React.Fragment>
+                    <Layout>
+                      <Layout.Section>
+                        <GameList
+                          games={fetchResults.data}
+                          onAddGame={(title) => {
+                            const productInput = {
+                              title: title,
+                              productType: 'board game',
+                            };
+                            console.log(title);
+                            createProduct({
+                              variables: {product: productInput},
+                            });
+                          }}
+                        />
+                        {loading}
+                        {error}
+                        {success}
+                      </Layout.Section>
+                    </Layout>
                   );
                 }}
               </Mutation>
