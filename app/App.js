@@ -1,16 +1,22 @@
 import React from 'react';
-import ApolloClient, {gql} from 'apollo-boost';
+import ApolloClient from 'apollo-boost';
 import {ApolloProvider} from 'react-apollo';
 import {AppProvider} from '@shopify/polaris';
 import '@shopify/polaris/styles.css';
 import {getSerialized} from '@shopify/react-serialize';
-//https://github.com/Shopify/quilt/tree/master/packages/react-serialize
 import {MainPage} from './MainPage';
+import createApp, {getShopOrigin} from '@shopify/app-bridge';
 
 const client = new ApolloClient({
   fetchOptions: {
     credentials: 'include',
   },
+});
+
+const app = createApp({
+  apiKey: getSerialized('apiKey').data,
+  shopOrigin: getShopOrigin(),
+  forceRedirect: true,
 });
 
 export default class App extends React.Component {
@@ -28,8 +34,7 @@ export default class App extends React.Component {
       <ApolloProvider client={client}>
         <AppProvider
           apiKey={getSerialized('apiKey').data}
-          shopOrigin={`https://${getSerialized('shopOrigin').data}`}
-          forceRedirect
+          shopOrigin={`https://${getShopOrigin()}`}
         >
           <MainPage />
         </AppProvider>
